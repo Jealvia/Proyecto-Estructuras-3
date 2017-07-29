@@ -18,23 +18,14 @@ import java.util.HashMap;
 public class Util {
     
     public static String leerTexto(String nombreArchivo) {
-        String linea;
-        String cadena = "";
+        String resultado;
         try {
-            FileReader f = new FileReader(nombreArchivo + ".txt");
-            BufferedReader br = new BufferedReader(f);
-            while (true) {
-                linea = br.readLine();
-                if (linea == null) {
-                    break;
-                }
-                cadena += linea;
-                //temporal.add(tmp);
-
-            }
-        } catch (IOException e) {
+            Scanner sc = new Scanner(new File(nombreArchivo));
+            resultado = sc.nextLine();
+        } catch (FileNotFoundException ex) {
+            resultado = "";
         }
-        return cadena;
+        return resultado;
 
     }
     
