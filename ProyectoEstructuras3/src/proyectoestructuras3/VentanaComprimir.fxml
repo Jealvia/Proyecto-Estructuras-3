@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="442.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectoestructuras3.VentanaComprimirController">
+   <children>
+      <JFXTextField fx:id="txtIngreso" layoutX="352.0" layoutY="161.0" prefHeight="25.0" prefWidth="167.0" />
+      <Label layoutX="352.0" layoutY="100.0" prefHeight="34.0" prefWidth="167.0" text="Ingrese nombre del archivo:">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font></Label>
+      <JFXButton fx:id="btnComprimir" layoutX="380.0" layoutY="237.0" onAction="#comprimirAction" prefHeight="58.0" prefWidth="111.0" style="-fx-background-color: #00FF00;" text="Comprimir">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></JFXButton>
+      <JFXTextArea fx:id="txtContenido" layoutX="14.0" layoutY="100.0" prefHeight="217.0" prefWidth="326.0" />
+      <Label layoutX="14.0" layoutY="33.0" text="Contenido del archivo">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font></Label>
+      <JFXButton fx:id="btnAtras" buttonType="RAISED" layoutX="380.0" layoutY="332.0" onAction="#regresar" prefHeight="58.0" prefWidth="111.0" style="-fx-background-color: #4169E1;" text="Atrás" textAlignment="CENTER">
+         <font>
+            <Font name="Kalinga" size="12.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

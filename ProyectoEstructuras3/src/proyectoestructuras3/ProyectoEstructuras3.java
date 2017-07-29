@@ -19,10 +19,10 @@ public class ProyectoEstructuras3 extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("VistaPrincipal.fxml"));
         
         Scene scene = new Scene(root);
-        
+        stage.setTitle("BIENVENIDO");
         stage.setScene(scene);
         stage.show();
     }
