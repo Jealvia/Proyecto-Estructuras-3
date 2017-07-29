@@ -6,10 +6,16 @@
 package espol.edu.ec.TDAs;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  *
@@ -63,16 +69,57 @@ public class Util {
     }
     
     public static String hexadecimalBinario(String hexadecimal){
-        return null;
+        int cerosFaltantes = 4-(hexadecimal.length()%4);
+        hexadecimal = completarHexa(hexadecimal, cerosFaltantes);
+        String resultado = "";
+        for(int i = 0; i<hexadecimal.length(); i+=4)
+        {
+            String temporal = hexadecimal.substring(i, i+4);
+            int decimal = Integer.parseInt(temporal, 2);
+            resultado += Integer.toString(decimal, 2);
+        }
+        
+        return completarBinario(resultado, cerosFaltantes);
         
     }
     
-    public static void guardarTexto (String nombreArchivo, String texto, HashMap<String,String> mapa){
-        
+    public static void guardarTexto(String nombreArchivo, String texto, HashMap<String, String> mapa) {
+        try {
+            PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(nombreArchivo+"_compress.txt")));
+            pw.println(texto);
+            pw.close();
+            PrintWriter pw1 = new PrintWriter(new BufferedWriter(new FileWriter(nombreArchivo+"_tablacodigos.txt")));
+            mapa.forEach((k,v) -> pw.println(k+":"+v));
+            pw1.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-    
+
     public static HashMap<String,String> leerMapa (String nombreArchivo){
-        return null;
+        HashMap<String,String> mapa=new HashMap<>();
+        String linea;
+        try {
+            FileReader f = new FileReader(nombreArchivo+".txt");
+            BufferedReader br = new BufferedReader(f);
+            while (true) {
+                linea = br.readLine();
+                if (linea == null) {
+                    break;
+                }
+                String valores[];
+                valores = linea.split(":");
+                String clave = valores[0].trim();
+                String valor = valores[1].trim();
+                System.out.println(linea);
+                mapa.put(clave, valor);
+
+            }
+        } catch (IOException e) {
+        }
+        return mapa;
         
     }
     
