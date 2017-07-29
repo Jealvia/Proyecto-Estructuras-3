@@ -10,9 +10,10 @@ import java.util.HashMap;
 /**
  *
  * @author Julio Alvia
+ * @param <E>
  */
-public class ArbolHuffman {
-    
+public class ArbolHuffman<E> {
+    private Nodo<E> nodo;
     
     
     public void calcularArbol (HashMap<String,Integer> mapa){
