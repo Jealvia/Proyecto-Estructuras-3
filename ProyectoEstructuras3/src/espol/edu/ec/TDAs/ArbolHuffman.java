@@ -21,14 +21,17 @@ public class ArbolHuffman<E> {
     }
     
     public HashMap<String,String> calcularCodigos (){
+        
         return null;
     }
     
     public String codificar (String texto, HashMap<String,String> mapa){
+        
         return null;
     }
     
     public String decodificar (String texto, HashMap<String,String> mapa){
+        
         return null;
     }
 }

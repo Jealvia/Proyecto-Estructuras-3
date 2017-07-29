@@ -88,7 +88,7 @@ public class Util {
             PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(nombreArchivo+"_compress.txt")));
             pw.println(texto);
             pw.close();
-            PrintWriter pw1 = new PrintWriter(new BufferedWriter(new FileWriter(nombreArchivo+"_tablacodigos.txt")));
+            PrintWriter pw1 = new PrintWriter(new BufferedWriter(new FileWriter("tablacodigos.txt")));
             mapa.forEach((k,v) -> pw.println(k+":"+v));
             pw1.close();
         } catch (FileNotFoundException ex) {
