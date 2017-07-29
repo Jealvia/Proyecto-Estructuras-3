@@ -58,7 +58,16 @@ public class Util {
     }
     
     public static String binarioHexadecimal (String binario){
-        return null;
+        int cerosFaltantes = 4-(binario.length()%4);
+        binario = completarBinario(binario, cerosFaltantes);
+        String resultado = "";
+        for(int i = 0; i<binario.length(); i+=4)
+        {
+            String temporal = binario.substring(i, i+4);
+            int decimal = Integer.parseInt(temporal, 2);
+            resultado += Integer.toString(decimal, 16);
+        }
+        return completarHexa(resultado, cerosFaltantes);
         
     }
     
@@ -74,6 +83,26 @@ public class Util {
     public static HashMap<String,String> leerMapa (String nombreArchivo){
         return null;
         
+    }
+    
+    private static String completarBinario(String binario, int cerosFaltantes)
+    {
+        String resultado = binario;
+        for (int i = 0; i< cerosFaltantes && cerosFaltantes<4; i++)
+        {
+            resultado+="0";
+        }
+        return resultado;
+    }
+    
+    private static String completarHexa(String hexa, int cerosFaltantes)
+    {
+        String resultado = hexa;
+        for (int i = 0; i< cerosFaltantes && cerosFaltantes<4; i++)
+        {
+            resultado+="-";
+        }
+        return resultado;
     }
     
 }
