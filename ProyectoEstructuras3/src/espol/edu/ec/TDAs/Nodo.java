@@ -13,10 +13,12 @@ package espol.edu.ec.TDAs;
 public class Nodo <E>{
     private Nodo<E> izquierdo,derecho;
     private E data;
+    private int frecuencia;
 
-    public Nodo(E data) {
+    public Nodo(E data, int frecuencia) {
         this.data = data;
         this.izquierdo=this.derecho=null;
+        this.frecuencia = frecuencia;
     }
 
     public Nodo<E> getIzquierdo() {
@@ -47,5 +49,14 @@ public class Nodo <E>{
     public String toString(){
         return this.data.toString();
     }
+
+    public int getFrecuencia() {
+        return frecuencia;
+    }
+
+    public void setFrecuencia(int frecuencia) {
+        this.frecuencia = frecuencia;
+    }
+    
     
 }
