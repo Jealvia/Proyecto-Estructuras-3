@@ -47,7 +47,22 @@ public class ArbolHuffman<E> {
     
     public HashMap<String,String> calcularCodigos (){
         
-        return null;
+        HashMap<String, String> mapa = new HashMap<>();
+        calcularCodigos(mapa, this.raiz,"");
+        return mapa;
+    }
+    
+    private void calcularCodigos(HashMap<String,String> mapa, Nodo nodo, String resultado)
+    {
+        if(1==nodo.getData().toString().length())
+        {
+            mapa.put(nodo.getData().toString(), resultado);
+        }
+        else
+        {
+            calcularCodigos(mapa, nodo.getIzquierdo(), resultado+"0"); //izquierda 0 derecha 1
+            calcularCodigos(mapa,nodo.getDerecho(), resultado+"1");
+        }
     }
     
     public String codificar (String texto, HashMap<String,String> mapa){

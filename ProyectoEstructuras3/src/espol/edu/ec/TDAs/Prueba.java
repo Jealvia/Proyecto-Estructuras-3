@@ -63,5 +63,8 @@ public class Prueba {
         System.out.println(mapa);
         calcularArbol(mapa);
         System.out.println(arbol);
+        arbol.calcularArbol(mapa);
+        System.out.println(arbol);
+        System.out.println(arbol.calcularCodigos());
     }
 }
