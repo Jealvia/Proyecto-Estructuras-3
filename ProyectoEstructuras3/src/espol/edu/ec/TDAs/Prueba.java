@@ -65,6 +65,7 @@ public class Prueba {
         System.out.println(arbol);
         arbol.calcularArbol(mapa);
         System.out.println(arbol);
-        System.out.println(arbol.calcularCodigos());
+        System.out.println();
+        System.out.println(arbol.codificar("AAAAAABBBBBBBBCCCCCDDDDDDDEEEEEEFFFFFFFFGGGGGGGGGGG", arbol.calcularCodigos()));
     }
 }

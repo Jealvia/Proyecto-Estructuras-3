@@ -66,8 +66,12 @@ public class ArbolHuffman<E> {
     }
     
     public String codificar (String texto, HashMap<String,String> mapa){
-        
-        return null;
+        String resultado = "";
+        for(char letra: texto.toCharArray())
+        {
+            resultado+= mapa.get(String.valueOf(letra));
+        }
+        return resultado;
     }
     
     public String decodificar (String texto, HashMap<String,String> mapa){
