@@ -47,7 +47,7 @@ public class Nodo <E>{
     
     @Override
     public String toString(){
-        return this.data.toString();
+        return "("+this.data.toString()+", "+this.frecuencia+")";
     }
 
     public int getFrecuencia() {

@@ -39,12 +39,12 @@ public class Util {
         int tam=texto.length();
         HashMap<String,Integer> mapa=new HashMap<>();
         for(int i=0;i<tam;i++){
-            if(mapa.get(texto.charAt(i))!=null){
+            if(mapa.get(String.valueOf(texto.charAt(i)))!=null){
                 String tmp=String.valueOf(texto.charAt(i));
-                mapa.put(tmp,1);
+                mapa.put(tmp,mapa.get(tmp)+1);
             }else{
                 String tmp=String.valueOf(texto.charAt(i));
-                mapa.put(tmp, mapa.get(tmp)+1);
+                mapa.put(tmp, 1);
             }
             
         }

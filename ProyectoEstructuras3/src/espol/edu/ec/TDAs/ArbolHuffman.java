@@ -15,6 +15,11 @@ import java.util.PriorityQueue;
  */
 public class ArbolHuffman<E> {
     private Nodo<E> raiz;
+
+    public ArbolHuffman() {
+        this.raiz = null;
+    }
+    
     
     
     public void calcularArbol (HashMap<String,Integer> mapa){
@@ -31,6 +36,10 @@ public class ArbolHuffman<E> {
                 padre.setDerecho(primerNodo);
                 padre.setIzquierdo(segundoNodo);
                 cola.offer(padre);
+            }
+            else
+            {
+                this.raiz = primerNodo;
             }
             
         }
@@ -49,5 +58,43 @@ public class ArbolHuffman<E> {
     public String decodificar (String texto, HashMap<String,String> mapa){
         
         return null;
+    }
+
+    public Nodo<E> getRaiz() {
+        return raiz;
+    }
+
+    public void setRaiz(Nodo<E> raiz) {
+        this.raiz = raiz;
+    }
+    
+    @Override
+    public String toString() {
+        return toString(this.raiz);
+    }
+
+    private String toString(Nodo<E> nodo) {
+        if(nodo!=null)
+        {
+            String cadena="";
+            if(nodo.getDerecho()!= null && nodo.getIzquierdo()!= null)
+            {
+                cadena += nodo+"["+nodo.getIzquierdo()+", "+nodo.getDerecho()+"] ";
+            }
+            else if(nodo.getDerecho()!= null && nodo.getIzquierdo()== null)
+            {
+                cadena += nodo+"["+"null, "+nodo.getDerecho()+"] ";
+            }
+            else if(nodo.getDerecho()== null && nodo.getIzquierdo()!= null)
+            {
+                cadena += nodo+"["+nodo.getIzquierdo()+", null"+"] ";
+            }
+            else if(nodo.getDerecho()== null && nodo.getIzquierdo()== null)
+            {
+                cadena+=nodo+"[null, null] ";
+            }
+            return cadena + toString(nodo.getIzquierdo())+ toString(nodo.getDerecho());
+        }
+        return "";
     }
 }
