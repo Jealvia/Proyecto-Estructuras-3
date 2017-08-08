@@ -16,6 +16,7 @@
  */
 package espol.edu.ec.GUI;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,8 +28,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -41,18 +44,21 @@ public class FXMLVentanaDescomprimirController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    @FXML
+    private Label lbl;
     
     @FXML
-    private TextArea txtContenido;
-
-    @FXML
-    private TextField txtIngreso;
+    private Button abrir;
 
     @FXML
     private Button btnDescomprimir;
 
     @FXML
-    private Button btnSalir;
+    private Button btnAtras;
+    
+    private FileChooser chooser = new FileChooser();
+    private File file;
+
 
     @FXML
     void descomprimirAction(ActionEvent event) {
@@ -60,16 +66,28 @@ public class FXMLVentanaDescomprimirController implements Initializable {
     }
 
     @FXML
+    File openFile(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        this.file = chooser.showOpenDialog(node.getScene().getWindow());
+        chooser.setTitle("Abrir archivo");
+        if (file != null && file.getName().endsWith(".txt")) {
+            this.lbl.setText(file.getAbsolutePath());
+            return file;
+        }
+        return null;
+    }
+    
+    @FXML
     void regresar(ActionEvent event) throws IOException {
         ((Node)(event.getSource())).getScene().getWindow().hide();
-        Parent root = FXMLLoader.load(getClass().getResource("VistaPrincipal.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLVistaPrincipal.fxml"));
         Stage stage=new Stage(); 
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("BIENVENIDO");
         stage.show();
     }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

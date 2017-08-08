@@ -60,13 +60,7 @@ public class FXMLVentanaComprimirController implements Initializable {
     private Button abrir;
     
     @FXML
-    private TextField txtIngreso;
-
-    @FXML
     private Button btnComprimir;
-
-    @FXML
-    private TextArea txtContenido;
 
     @FXML
     private Button btnAtras;
