@@ -75,8 +75,23 @@ public class ArbolHuffman<E> {
     }
     
     public String decodificar (String texto, HashMap<String,String> mapa){
-        
-        return null;
+        String resultado = "";
+        String temporal = "";
+        HashMap<String,String> mapaDecodificar = new HashMap<>();
+        mapa.forEach((k, v)->mapaDecodificar.put(v, k));
+        for(char num: texto.toCharArray())
+        {
+            if (mapaDecodificar.containsKey(temporal))
+            {
+                resultado+=mapaDecodificar.get(temporal);
+                temporal = String.valueOf(num);
+            }
+            else
+            {
+                temporal+= String.valueOf(num); //decodificar saca una g menos por alguna razón
+            }
+        }
+        return resultado;
     }
 
     public Nodo<E> getRaiz() {

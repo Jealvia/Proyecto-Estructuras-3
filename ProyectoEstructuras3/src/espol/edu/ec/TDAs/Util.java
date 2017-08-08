@@ -13,7 +13,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.Integer.parseInt;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -33,6 +32,18 @@ public class Util {
         }
         return resultado;
 
+    }
+    
+    public static String leerTexto(File file) throws FileNotFoundException {
+        String resultado;
+        
+        if (file != null) {
+            Scanner sc = new Scanner(file);
+            resultado = sc.nextLine();
+        } else {
+            resultado = "";
+        }
+        return resultado;
     }
     
     public static HashMap<String,Integer> calcularFrecuencias (String texto){

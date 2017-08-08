@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../../resources/bootstrap3.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.GUI.FXMLVistaPrincipalController">
+   <children>
+      <BorderPane layoutX="1.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;">
+         <center>
+            <Label text="Compresor de Huffman" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="47.0" />
+               </font>
+            </Label>
+         </center>
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="150.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnComprimir" mnemonicParsing="false" onAction="#clickComprimir" styleClass="success" text="Comprimir" />
+                  <Button fx:id="btnDescomprimir" mnemonicParsing="false" onAction="#clickDescomprimir" styleClass="success" text="Descomprimir" />
+               </children>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>
