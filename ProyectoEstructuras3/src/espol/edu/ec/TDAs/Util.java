@@ -81,17 +81,31 @@ public class Util {
     
     public static String hexadecimalBinario(String hexadecimal){
         int cerosFaltantes = 4-(hexadecimal.length()%4);
-        hexadecimal = completarHexa(hexadecimal, cerosFaltantes);
         String resultado = "";
-        for(int i = 0; i<hexadecimal.length(); i+=4)
+        for(int i = 0; i<hexadecimal.length(); i++)
         {
-            String temporal = hexadecimal.substring(i, i+4);
-            int decimal = Integer.parseInt(temporal, 16);
-            resultado += Integer.toString(decimal, 2);
+            if(!"-".equals(hexadecimal.substring(i, i+1)))
+            {
+                String temporal = hexadecimal.substring(i, i+1);
+                int decimal = Integer.parseInt(temporal, 16);
+                resultado += Util.completarBinarioAntes(Integer.toString(decimal, 2));
+            }
+               
         }
         
-        return completarBinario(resultado, cerosFaltantes);
+        return resultado.substring(0, resultado.length()-cerosFaltantes);
         
+    }
+    
+        private static String completarBinarioAntes(String binario)
+    {
+        String resultado = "";
+        int cerosFaltantes = 4-binario.length();
+        for(int i = 0; i<cerosFaltantes; i++)
+        {
+            resultado+="0";
+        }
+        return resultado+binario;
     }
     
     public static void guardarTexto(String nombreArchivo, String texto, HashMap<String, String> mapa) {
@@ -161,7 +175,8 @@ public class Util {
         HashMap<String,String> mapa=new HashMap<>();
         String linea;
         try {
-            FileReader f = new FileReader(obtenerPath(file) + file.getName());
+//            FileReader f = new FileReader(obtenerPath(file) + file.getName());
+            FileReader f = new FileReader(file.getAbsolutePath());
             BufferedReader br = new BufferedReader(f);
             while (true) {
                 linea = br.readLine();
