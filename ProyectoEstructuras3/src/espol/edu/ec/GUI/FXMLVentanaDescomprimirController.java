@@ -19,6 +19,7 @@ package espol.edu.ec.GUI;
 import static espol.edu.ec.TDAs.Prueba.arbol;
 import static espol.edu.ec.TDAs.Util.leerMapa;
 import static espol.edu.ec.TDAs.Prueba.calcularArbol;
+import static espol.edu.ec.TDAs.Util.calcularFrecuencias;
 import static espol.edu.ec.TDAs.Util.guardarTexto;
 import static espol.edu.ec.TDAs.Util.hexadecimalBinario;
 import static espol.edu.ec.TDAs.Util.leerTexto;
@@ -80,8 +81,10 @@ public class FXMLVentanaDescomprimirController implements Initializable {
             if (mapFile != null) {
                 mapa = leerMapa(mapFile);
                 if (mapa != null) {
-                    System.out.println(mapa);
                     String b = hexadecimalBinario(hexa);
+                    HashMap <String, Integer> map = calcularFrecuencias(hexa);
+                    calcularArbol(map);
+                    arbol.calcularArbol(mapa);
                     String notB = arbol.decodificar(b, mapa);
                     File newFile = saveFile();
                     if (newFile != null) {
