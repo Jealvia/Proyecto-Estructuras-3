@@ -35,7 +35,9 @@ import static espol.edu.ec.TDAs.Prueba.arbol;
 import static espol.edu.ec.TDAs.Prueba.calcularArbol;
 import static espol.edu.ec.TDAs.Prueba.calcularFrecuencias;
 import static espol.edu.ec.TDAs.Util.binarioHexadecimal;
+import static espol.edu.ec.TDAs.Util.guardarTexto;
 import static espol.edu.ec.TDAs.Util.leerTexto;
+import static espol.edu.ec.TDAs.Util.obtenerPath;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 
@@ -50,6 +52,8 @@ public class FXMLVentanaComprimirController implements Initializable {
      * Initializes the controller class.
      */
     
+    @FXML
+    private Label status;
     
     @FXML
     private Label lbl;
@@ -69,6 +73,7 @@ public class FXMLVentanaComprimirController implements Initializable {
     @FXML
     void comprimirAction(ActionEvent event) throws FileNotFoundException {
         if (this.file != null) {
+            boolean stat = false;
             String s = leerTexto(this.file);
             HashMap<String, Integer> mapa = calcularFrecuencias(s);
             System.out.println(mapa);
@@ -76,7 +81,17 @@ public class FXMLVentanaComprimirController implements Initializable {
             arbol.calcularArbol(mapa);
             System.out.println();
             String b = arbol.codificar(s, arbol.calcularCodigos());
-            System.out.println(binarioHexadecimal(b));
+            String hexa = binarioHexadecimal(b);
+            File newFile = saveFile();
+            if (newFile != null) {
+                stat = guardarTexto(newFile, hexa, arbol.calcularCodigos());
+            }
+            
+            if (stat) {
+            status.setText("¡Compresión exitosa!");
+            } else {
+                status.setText("Ha ocurrido un error durante la compresión.");
+            }
         }
     }
     
@@ -84,13 +99,23 @@ public class FXMLVentanaComprimirController implements Initializable {
     File openFile(ActionEvent event) {
         Node node = (Node) event.getSource();
         this.file = chooser.showOpenDialog(node.getScene().getWindow());
-        chooser.setTitle("Abrir archivo");
         if (file != null && file.getName().endsWith(".txt")) {
             this.lbl.setText(file.getAbsolutePath());
             return file;
         }
         return null;
     }
+    
+    File saveFile() {
+        Node node = (Node) btnComprimir;
+        File fileSave = chooser.showSaveDialog(node.getScene().getWindow());
+        if (fileSave != null && fileSave.getName().endsWith(".txt")) {
+            return fileSave;
+        }
+        return null;
+    }
+    
+    
     
     @FXML
     void regresar(ActionEvent event) throws IOException {

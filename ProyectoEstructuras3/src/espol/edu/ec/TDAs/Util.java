@@ -108,6 +108,29 @@ public class Util {
             System.out.println(ex.getMessage());
         }
     }
+    
+    
+    public static String obtenerPath(File file) {
+        return file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator)) + File.separator;
+    }
+    
+    public static boolean guardarTexto(File file, String texto, HashMap<String, String> mapa) {
+        try {
+            PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(obtenerPath(file) + file.getName())));
+            pw.println(texto);
+            pw.close();
+            PrintWriter pw1 = new PrintWriter(new BufferedWriter(new FileWriter(obtenerPath(file) + "tablacodigos.txt")));
+            mapa.forEach((k,v) -> pw.println(k+":"+v));
+            pw1.close();
+            return true;
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
 
     public static HashMap<String,String> leerMapa (String nombreArchivo){
         HashMap<String,String> mapa=new HashMap<>();
