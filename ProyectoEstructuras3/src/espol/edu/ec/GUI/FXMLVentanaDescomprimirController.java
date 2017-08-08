@@ -42,6 +42,10 @@ public class FXMLVentanaDescomprimirController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    @FXML
+    private Label status;
+    
     @FXML
     private Label lbl;
     
