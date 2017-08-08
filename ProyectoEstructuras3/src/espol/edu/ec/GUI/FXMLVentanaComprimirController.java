@@ -72,8 +72,8 @@ public class FXMLVentanaComprimirController implements Initializable {
 
     @FXML
     void comprimirAction(ActionEvent event) throws FileNotFoundException {
+        boolean stat = false;
         if (this.file != null) {
-            boolean stat = false;
             String s = leerTexto(this.file);
             HashMap<String, Integer> mapa = calcularFrecuencias(s);
             System.out.println(mapa);
@@ -86,12 +86,11 @@ public class FXMLVentanaComprimirController implements Initializable {
             if (newFile != null) {
                 stat = guardarTexto(newFile, hexa, arbol.calcularCodigos());
             }
-            
-            if (stat) {
+        }
+        if (stat) {
             status.setText("¡Compresión exitosa!");
-            } else {
-                status.setText("Ha ocurrido un error durante la compresión.");
-            }
+        } else {
+            status.setText("Ha ocurrido un error durante la compresión.");
         }
     }
     

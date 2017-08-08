@@ -16,9 +16,17 @@
  */
 package espol.edu.ec.GUI;
 
+import static espol.edu.ec.TDAs.Prueba.arbol;
+import static espol.edu.ec.TDAs.Util.leerMapa;
+import static espol.edu.ec.TDAs.Prueba.calcularArbol;
+import static espol.edu.ec.TDAs.Util.guardarTexto;
+import static espol.edu.ec.TDAs.Util.hexadecimalBinario;
+import static espol.edu.ec.TDAs.Util.leerTexto;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -63,15 +71,39 @@ public class FXMLVentanaDescomprimirController implements Initializable {
 
 
     @FXML
-    void descomprimirAction(ActionEvent event) {
-        
+    void descomprimirAction(ActionEvent event) throws FileNotFoundException {
+        HashMap <String, String> mapa = new HashMap();
+        boolean stat = false;
+        if (this.file != null) {
+            String hexa = leerTexto(this.file);
+            File mapFile = openFile();
+//            HashMap<String, Integer> mapa = calcularFrecuencias(s);
+            if (mapFile != null) {
+                mapa = leerMapa(mapFile);
+                String b = hexadecimalBinario(hexa);
+                String notB = arbol.decodificar(b, mapa);
+                File newFile = saveFile();
+                if (newFile != null) {
+                    stat = guardarTexto(newFile, notB, arbol.calcularCodigos());
+                }
+            }
+//            HashMap<String, String> mapa = leerMapa(mapFile);
+//            System.out.println(mapa);
+//            calcularArbol(mapa);
+//            arbol.calcularArbol(mapa);
+//            System.out.println();
+        }
+        if (stat) {
+            status.setText("¡Descompresión exitosa!");
+        } else {
+            status.setText("Ha ocurrido un error durante la descompresión.");
+        }
     }
 
     @FXML
     File openFile(ActionEvent event) {
         Node node = (Node) event.getSource();
         this.file = chooser.showOpenDialog(node.getScene().getWindow());
-        chooser.setTitle("Abrir archivo");
         if (file != null && file.getName().endsWith(".txt")) {
             this.lbl.setText(file.getAbsolutePath());
             return file;
@@ -79,6 +111,24 @@ public class FXMLVentanaDescomprimirController implements Initializable {
         return null;
     }
     
+    File openFile() {
+        Node node = (Node) btnDescomprimir;
+        this.file = chooser.showOpenDialog(node.getScene().getWindow());
+        if (file != null && file.getName().endsWith(".txt")) {
+            this.lbl.setText(file.getAbsolutePath());
+            return file;
+        }
+        return null;
+    }
+    
+    File saveFile() {
+        Node node = (Node) btnDescomprimir;
+        File fileSave = chooser.showSaveDialog(node.getScene().getWindow());
+        if (fileSave != null && fileSave.getName().endsWith(".txt")) {
+            return fileSave;
+        }
+        return null;
+    }
 
     
     @FXML

@@ -75,7 +75,7 @@ public class Util {
             int decimal = Integer.parseInt(temporal, 2);
             resultado += Integer.toString(decimal, 16);
         }
-        return completarHexa(resultado, cerosFaltantes);
+        return completarHexa(resultado, cerosFaltantes).toUpperCase();
         
     }
     
@@ -86,7 +86,7 @@ public class Util {
         for(int i = 0; i<hexadecimal.length(); i+=4)
         {
             String temporal = hexadecimal.substring(i, i+4);
-            int decimal = Integer.parseInt(temporal, 2);
+            int decimal = Integer.parseInt(temporal, 16);
             resultado += Integer.toString(decimal, 2);
         }
         
@@ -120,7 +120,7 @@ public class Util {
             pw.println(texto);
             pw.close();
             PrintWriter pw1 = new PrintWriter(new BufferedWriter(new FileWriter(obtenerPath(file) + "tablacodigos.txt")));
-            mapa.forEach((k,v) -> pw.println(k+":"+v));
+            mapa.forEach((k,v) -> pw1.println(k+":"+v));
             pw1.close();
             return true;
         } catch (FileNotFoundException ex) {
@@ -137,6 +137,31 @@ public class Util {
         String linea;
         try {
             FileReader f = new FileReader(nombreArchivo+".txt");
+            BufferedReader br = new BufferedReader(f);
+            while (true) {
+                linea = br.readLine();
+                if (linea == null) {
+                    break;
+                }
+                String valores[];
+                valores = linea.split(":");
+                String clave = valores[0].trim();
+                String valor = valores[1].trim();
+                System.out.println(linea);
+                mapa.put(clave, valor);
+
+            }
+        } catch (IOException e) {
+        }
+        return mapa;
+        
+    }
+    
+    public static HashMap<String,String> leerMapa (File file){
+        HashMap<String,String> mapa=new HashMap<>();
+        String linea;
+        try {
+            FileReader f = new FileReader(obtenerPath(file) + file.getName());
             BufferedReader br = new BufferedReader(f);
             while (true) {
                 linea = br.readLine();

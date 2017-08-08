@@ -5,6 +5,7 @@
  */
 package espol.edu.ec.TDAs;
 
+import static espol.edu.ec.TDAs.Util.hexadecimalBinario;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
@@ -69,6 +70,9 @@ public class Prueba {
         System.out.println(arbol.codificar("AAAAAABBBBBBBBCCCCCDDDDDDDEEEEEEFFFFFFFFGGGGGGGGGGG", arbol.calcularCodigos()));
         System.out.println(arbol.decodificar("0110110110110110110010010010010010010010011111111111111110100100100100100100101101101101101101100000000000000000000000001010101010101010101010", arbol.calcularCodigos()));
         System.out.println("AAAAAABBBBBBBBCCCCCDDDDDDDEEEEEEFFFFFFFFGGGGGGGGGGG");
+        System.out.println(hexadecimalBinario("6DB6C924927FFFA4924B6DB6000000AAAAA8--"));
+        String s = hexadecimalBinario("6DB6C924927FFFA4924B6DB6000000AAAAA8--");
+        System.out.println(arbol.decodificar(s, arbol.calcularCodigos()));
         //System.out.println("AAAAAABBBBBBBBCCCCCDDDDDDDEEEEEEFFFFFFFFGGGGGGGGGGG".equals(arbol.decodificar("0110110110110110110010010010010010010010011111111111111110100100100100100100101101101101101101100000000000000000000000001010101010101010101010", arbol.calcularCodigos())));
     }
 }

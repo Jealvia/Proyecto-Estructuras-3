@@ -91,6 +91,7 @@ public class ArbolHuffman<E> {
                 temporal+= String.valueOf(num); //decodificar saca una g menos por alguna razón
             }
         }
+        resultado += mapaDecodificar.get(temporal);
         return resultado;
     }
 
