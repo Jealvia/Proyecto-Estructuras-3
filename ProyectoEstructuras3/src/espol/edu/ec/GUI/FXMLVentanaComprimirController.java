@@ -16,6 +16,7 @@
  */
 package espol.edu.ec.GUI;
 
+import espol.edu.ec.TDAs.ArbolHuffman;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -68,6 +69,7 @@ public class FXMLVentanaComprimirController implements Initializable {
     private Button btnAtras;
     
     private FileChooser chooser = new FileChooser();
+    
     private File file;
 
     @FXML
@@ -77,7 +79,9 @@ public class FXMLVentanaComprimirController implements Initializable {
             String s = leerTexto(this.file);
             HashMap<String, Integer> mapa = calcularFrecuencias(s);
             System.out.println(mapa);
-            calcularArbol(mapa);
+            ArbolHuffman arbol=new ArbolHuffman();
+            //arbol.calcularArbol(mapa);
+            //calcularArbol(mapa);
             arbol.calcularArbol(mapa);
             System.out.println();
             String b = arbol.codificar(s, arbol.calcularCodigos());

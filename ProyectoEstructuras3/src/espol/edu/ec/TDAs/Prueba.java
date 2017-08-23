@@ -14,7 +14,9 @@ import java.util.PriorityQueue;
  * @author User
  */
 public class Prueba {
+    
     public static ArbolHuffman arbol;
+    
     public static void calcularArbol (HashMap<String,Integer> mapa){
         PriorityQueue<Nodo> cola = new PriorityQueue<>((Nodo n1, Nodo n2)->n1.getFrecuencia()-n2.getFrecuencia());
         mapa.forEach((letra, frecuencia)-> cola.offer(new Nodo<>(letra, frecuencia)));
@@ -76,4 +78,5 @@ public class Prueba {
         System.out.println(arbol.decodificar(s, arbol.calcularCodigos()));
         //System.out.println("AAAAAABBBBBBBBCCCCCDDDDDDDEEEEEEFFFFFFFFGGGGGGGGGGG".equals(arbol.decodificar("0110110110110110110010010010010010010010011111111111111110100100100100100100101101101101101101100000000000000000000000001010101010101010101010", arbol.calcularCodigos())));
     }
+    
 }

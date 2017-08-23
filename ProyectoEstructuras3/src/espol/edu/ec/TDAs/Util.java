@@ -43,6 +43,7 @@ public class Util {
         } else {
             resultado = "";
         }
+        
         return resultado;
     }
     
@@ -59,10 +60,7 @@ public class Util {
             }
             
         }
-        
-        
         return mapa;
-        
     }
     
     public static String binarioHexadecimal (String binario){

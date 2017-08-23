@@ -16,6 +16,7 @@
  */
 package espol.edu.ec.GUI;
 
+import espol.edu.ec.TDAs.ArbolHuffman;
 import static espol.edu.ec.TDAs.Prueba.arbol;
 import static espol.edu.ec.TDAs.Util.leerMapa;
 import static espol.edu.ec.TDAs.Prueba.calcularArbol;
@@ -75,16 +76,21 @@ public class FXMLVentanaDescomprimirController implements Initializable {
     void descomprimirAction(ActionEvent event) throws FileNotFoundException {
         HashMap <String, String> mapa = new HashMap();
         boolean stat = false;
+        ArbolHuffman arbol=new ArbolHuffman();
         if (this.file != null) {
             String hexa = leerTexto(this.file);
+            System.out.println(hexa);
             File mapFile = openFile();
             if (mapFile != null) {
                 mapa = leerMapa(mapFile);
                 if (mapa != null) {
                     String b = hexadecimalBinario(hexa);
+                    System.out.println(b);
                     HashMap <String, Integer> map = calcularFrecuencias(hexa);
-                    calcularArbol(map);
-                    arbol.calcularArbol(mapa);
+                    System.out.println(map);
+                    System.out.println(mapa);
+                    //calcularArbol(map);
+                    arbol.calcularArbol(map);
                     String notB = arbol.decodificar(b, mapa);
                     File newFile = saveFile();
                     if (newFile != null) {
